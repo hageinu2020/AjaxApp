@@ -1,11 +1,8 @@
 class PostsController < ApplicationController
-  
-  def index  # indexアクションを定義した
-    @posts = Post.all.order(id: "DESC")  #全てのレコードを@postsに代入
-  end
 
-  #def new
-  #end
+  def index
+    @posts = Post.all.order(id: "DESC")
+  end
 
   def create
     Post.create(content: params[:content])
@@ -13,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def checked
-    post = post.find(params[:id])
+    post = Post.find(params[:id])
     if post.checked then
       post.update(checked: false)
     else
@@ -21,6 +18,7 @@ class PostsController < ApplicationController
     end
 
     item = Post.find(params[:id])
-    render json: { post: item}
-end
+    render json: { post: item }
+  end
 
+end
